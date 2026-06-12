@@ -1,458 +1,826 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Engineer | Latent Space Portfolio</title>
-    <meta name="description" content="Portfolio of a Machine Learning Engineer specializing in computer vision, large language models, and high-throughput MLOps systems.">
+/* --- ML Engineer Portfolio Design System --- */
+:root {
+    /* Color Palette */
+    --bg-color: #0B0E14;
+    --panel-color: #11151F;
+    --text-primary: #E8E6E1;
+    --text-secondary: #8B93A7;
+    --accent-cyan: #5EE6D0;
+    --accent-violet: #8B6FF0;
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    /* Gradients */
+    --gradient-accent: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-violet) 100%);
+    --gradient-glow: rgba(94, 230, 208, 0.15);
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    /* Typography */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
     
-    <!-- Three.js Import Map -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
-    </script>
-</head>
-<body>
-    <!-- Background 3D Canvas -->
-    <canvas id="canvas-3d"></canvas>
-    <!-- Neural Network HUD Overlay (Monospace Dashboard Panel) -->
-    <div class="hud-container" aria-hidden="true">
-        <div class="hud-panel hud-left">
-            <div class="hud-item">
-                <span class="hud-label">// SYSTEM_STATUS:</span>
-                <span class="hud-value status-active">ACTIVE_RUN</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">// EPOCH_COUNTER:</span>
-                <span class="hud-value" id="hud-epoch">042 / 100</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">// CURRENT_LOSS:</span>
-                <span class="hud-value" id="hud-loss">0.0842 ↓</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">// LEARNING_RATE:</span>
-                <span class="hud-value">1e-4 (ADAMW)</span>
-            </div>
-        </div>
-        <div class="hud-panel hud-right">
-            <div class="hud-item">
-                <span class="hud-label">// LATENT_DIM:</span>
-                <span class="hud-value">256</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">// ACTIVE_NODES:</span>
-                <span class="hud-value">250 / 250</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">// CAM_PARALLAX:</span>
-                <span class="hud-value text-glow" id="hud-parallax">X: 0.000, Y: 0.000</span>
-            </div>
-        </div>
-    </div>
-    <!-- Main Navigation Header -->
-    <header class="main-header">
-        <nav class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-accent">&lt;</span>
-                <span class="logo-text">LATENT.SPACE</span>
-                <span class="logo-accent">&gt;</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">// about</a></li>
-                <li><a href="#experience" class="nav-link">// experience</a></li>
-                <li><a href="#projects" class="nav-link">// projects</a></li>
-                <li><a href="#skills" class="nav-link">// skills</a></li>
-                <li><a href="#contact" class="nav-link">// contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <!-- Main Scroll Content -->
-    <main class="content-wrapper">
-        
-        <!-- Hero Section -->
-        <section class="hero-section" id="hero">
-            <div class="hero-content">
-                <div class="eyebrow">// machine learning engineer</div>
-                <h1 class="hero-title">
-                    Projecting Ideas into <br>
-                    <span class="gradient-text">Latent Representation.</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Developing and deploying state-of-the-art architectures, optimizing latent representation space, and building robust training pipelines for production-scale models.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="#projects" class="btn btn-primary">Explore Experiments</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
-            </div>
-            <div class="hero-scroll-indicator" aria-hidden="true">
-                <span class="indicator-text">SCROLL TO ANALYZE</span>
-                <div class="indicator-arrow"></div>
-            </div>
-        </section>
-        <!-- About Section -->
-        <section class="about-section section-padding" id="about">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">01 /</span>
-                    <h2 class="section-title">Model Specification</h2>
-                </div>
-                
-                <div class="about-grid">
-                    <div class="about-bio">
-                        <p class="bio-lead">
-                            I build systems that bridge the gap between abstract mathematical concepts and productionized intelligence. My focus lies in designing optimal architectures, optimizing GPU workloads, and engineering pipelines that handle multi-modal inputs at scale.
-                        </p>
-                        <div class="bio-details">
-                            <div class="bio-block">
-                                <h4 class="bio-block-title">// 01. data extraction & prep</h4>
-                                <p>Curating clean datasets, designing tokenization strategies, and executing embedding engineering. I operate under the belief that data represents the true foundation of model weights.</p>
-                            </div>
-                            <div class="bio-block">
-                                <h4 class="bio-block-title">// 02. architecture & training</h4>
-                                <p>Configuring multi-layer transformers, fine-tuning dense layers, and optimizing training hyper-parameters. Specializing in distributed model parallelisms and customized loss functions.</p>
-                            </div>
-                            <div class="bio-block">
-                                <h4 class="bio-block-title">// 03. deployment & mlops</h4>
-                                <p>Quantizing networks for edge devices (FP8/INT4), hosting serverless inference endpoints, and monitoring for drift. Closing the feedback loop by continuously capturing edge samples.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Stats Grid -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value gradient-text">5+</div>
-                            <div class="stat-label">Years of Research & Development</div>
-                            <div class="stat-meta">// exp_duration</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value gradient-text">18+</div>
-                            <div class="stat-label">Production Models Shipped</div>
-                            <div class="stat-meta">// weights_deployed</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value gradient-text">&lt;12ms</div>
-                            <div class="stat-label">P99 Serverless Latency</div>
-                            <div class="stat-meta">// inference_speed</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value gradient-text">6</div>
-                            <div class="stat-label">Peer-Reviewed Publications</div>
-                            <div class="stat-meta">// citation_index</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Experience Section -->
-        <section class="experience-section section-padding" id="experience">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">02 /</span>
-                    <h2 class="section-title">Training Timeline</h2>
-                </div>
-                <!-- Training Log Timeline -->
-                <div class="timeline-log">
-                    
-                    <!-- Timeline Epoch 04 (Current Role) -->
-                    <div class="timeline-epoch">
-                        <div class="epoch-marker">
-                            <span class="epoch-label">EPOCH 04</span>
-                            <span class="epoch-date">2024 - Present</span>
-                        </div>
-                        <div class="epoch-card">
-                            <div class="epoch-header">
-                                <h3 class="epoch-role">Lead AI Researcher</h3>
-                                <span class="epoch-status status-loss-decrease">loss: 0.041 ↓</span>
-                            </div>
-                            <div class="epoch-company">// DEEPINTELLIGENCE LABS</div>
-                            <p class="epoch-description">
-                                Directing research efforts in sparse-attention transformers and multi-modal embedding spaces. Scaled distributed model pre-training across 256 H100 GPU clusters. Optimized attention layers to cut training cost by 35% while improving zero-shot perplexity.
-                            </p>
-                            <div class="epoch-tags">
-                                <span class="tech-tag">PyTorch</span>
-                                <span class="tech-tag">FlashAttention</span>
-                                <span class="tech-tag">Kubernetes</span>
-                                <span class="tech-tag">CUDA</span>
-                                <span class="tech-tag">HuggingFace</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Timeline Epoch 03 -->
-                    <div class="timeline-epoch">
-                        <div class="epoch-marker">
-                            <span class="epoch-label">EPOCH 03</span>
-                            <span class="epoch-date">2022 - 2024</span>
-                        </div>
-                        <div class="epoch-card">
-                            <div class="epoch-header">
-                                <h3 class="epoch-role">Senior Machine Learning Engineer</h3>
-                                <span class="epoch-status status-loss-decrease">loss: 0.098 ↓</span>
-                            </div>
-                            <div class="epoch-company">// TENSORFLOW & CO</div>
-                            <p class="epoch-description">
-                                Developed computer vision models for automated scene segmentation. Re-architected model serving from CPU-only microservices to NVIDIA Triton Inference Servers, dropping average latency by 72%. Spearheaded automated drift-detection loops.
-                            </p>
-                            <div class="epoch-tags">
-                                <span class="tech-tag">TensorFlow</span>
-                                <span class="tech-tag">Triton Server</span>
-                                <span class="tech-tag">TensorRT</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Python</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Timeline Epoch 02 -->
-                    <div class="timeline-epoch">
-                        <div class="epoch-marker">
-                            <span class="epoch-label">EPOCH 02</span>
-                            <span class="epoch-date">2020 - 2022</span>
-                        </div>
-                        <div class="epoch-card">
-                            <div class="epoch-header">
-                                <h3 class="epoch-role">Machine Learning Scientist</h3>
-                                <span class="epoch-status status-loss-decrease">loss: 0.174 ↓</span>
-                            </div>
-                            <div class="epoch-company">// NEURALNETICS RESEARCH</span>
-                            <p class="epoch-description">
-                                Designed recommender systems using graph neural networks (GNNs). Implemented customized loss functions to optimize collaborative filtering weights. Integrated real-time feature extraction pipelines into database storage structures.
-                            </p>
-                            <div class="epoch-tags">
-                                <span class="tech-tag">PyTorch Geometric</span>
-                                <span class="tech-tag">SciKit-Learn</span>
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">Ray</span>
-                                <span class="tech-tag">FastAPI</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Timeline Epoch 01 -->
-                    <div class="timeline-epoch">
-                        <div class="epoch-marker">
-                            <span class="epoch-label">EPOCH 01</span>
-                            <span class="epoch-date">2019 - 2020</span>
-                        </div>
-                        <div class="epoch-card">
-                            <div class="epoch-header">
-                                <h3 class="epoch-role">AI Engineer Intern</h3>
-                                <span class="epoch-status status-init">loss: 0.651 (init)</span>
-                            </div>
-                            <div class="epoch-company">// COGNITIVE SYSTEMS CO</span>
-                            <p class="epoch-description">
-                                Conducted exploratory data analysis, hyper-parameter sweeps, and model performance benchmarking. Automated model performance reporting dashboards and deployed basic linear/convolutional networks.
-                            </p>
-                            <div class="epoch-tags">
-                                <span class="tech-tag">NumPy</span>
-                                <span class="tech-tag">Pandas</span>
-                                <span class="tech-tag">Matplotlib</span>
-                                <span class="tech-tag">Keras</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Projects Section -->
-        <section class="projects-section section-padding" id="projects">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">03 /</span>
-                    <h2 class="section-title">Ablation Studies & Runs</h2>
-                </div>
-                <div class="projects-grid">
-                    
-                    <!-- Project Card 1 -->
-                    <div class="project-card">
-                        <div class="project-card-header">
-                            <span class="project-id">// RUN_001</span>
-                            <span class="project-metric">+6.8% CTR</span>
-                        </div>
-                        <h3 class="project-name">Multi-Modal Recommendation Transformer</h3>
-                        <p class="project-desc">
-                            Designed and fine-tuned a custom recommendation engine leveraging behavioral features combined with textual and visual product embedding projections.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">Transformers</span>
-                            <span class="tech-tag">Pinecone</span>
-                        </div>
-                    </div>
-                    <!-- Project Card 2 -->
-                    <div class="project-card">
-                        <div class="project-card-header">
-                            <span class="project-id">// RUN_002</span>
-                            <span class="project-metric">-41% inference cost</span>
-                        </div>
-                        <h3 class="project-name">Edge LLM Quantization Framework</h3>
-                        <p class="project-desc">
-                            Compiled a custom toolchain using AWQ and GPTQ algorithms to compress 70B parameter models down to 4-bit configurations for fast local edge deployment.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">vLLM</span>
-                            <span class="tech-tag">TensorRT-LLM</span>
-                        </div>
-                    </div>
-                    <!-- Project Card 3 -->
-                    <div class="project-card">
-                        <div class="project-card-header">
-                            <span class="project-id">// RUN_003</span>
-                            <span class="project-metric">-58% drift latency</span>
-                        </div>
-                        <h3 class="project-name">Real-Time Drift Analysis Pipeline</h3>
-                        <p class="project-desc">
-                            Engineered an event-driven system analyzing inference streams in real-time, executing Kolmogorov-Smirnov statistical tests to detect feature deviations.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tech-tag">Apache Kafka</span>
-                            <span class="tech-tag">Prometheus</span>
-                            <span class="tech-tag">Grafana</span>
-                        </div>
-                    </div>
-                    <!-- Project Card 4 -->
-                    <div class="project-card">
-                        <div class="project-card-header">
-                            <span class="project-id">// RUN_004</span>
-                            <span class="project-metric">99.4% F1-score</span>
-                        </div>
-                        <h3 class="project-name">Hyperspectral Satellite Segmentation</h3>
-                        <p class="project-desc">
-                            Trained a customized U-Net architecture with multi-spectral input bands to accurately map forest canopy cover changes over large geography matrices.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">RasterIO</span>
-                            <span class="tech-tag">Google Earth Engine</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Skills Section -->
-        <section class="skills-section section-padding" id="skills">
-            <div class="section-container">
-                <div class="section-header">
-                    <span class="section-number">04 /</span>
-                    <h2 class="section-title">Model Layers</h2>
-                </div>
-                <div class="skills-layers">
-                    
-                    <!-- Layer 1: Input / Data -->
-                    <div class="skills-layer-row">
-                        <div class="layer-header">
-                            <div class="layer-title">// LAYER 01: INPUT / DATA</div>
-                            <div class="layer-activation">Activation: Raw Inputs</div>
-                        </div>
-                        <div class="layer-chips">
-                            <span class="skill-chip">Feature Engineering</span>
-                            <span class="skill-chip">Spark / Hadoop</span>
-                            <span class="skill-chip">Vector Embeddings</span>
-                            <span class="skill-chip">SQL / NoSQL</span>
-                            <span class="skill-chip">Data Version Control (DVC)</span>
-                            <span class="skill-chip">ETL Pipelines</span>
-                        </div>
-                    </div>
-                    <!-- Layer 2: Modeling -->
-                    <div class="skills-layer-row">
-                        <div class="layer-header">
-                            <div class="layer-title">// LAYER 02: HIDDEN / MODELING</div>
-                            <div class="layer-activation">Activation: GELU / ReLU</div>
-                        </div>
-                        <div class="layer-chips">
-                            <span class="skill-chip">Deep Learning (PyTorch / TF)</span>
-                            <span class="skill-chip">Transformers & LLMs</span>
-                            <span class="skill-chip">Computer Vision (YOLO, ViT)</span>
-                            <span class="skill-chip">GNNs & Graph Analytics</span>
-                            <span class="skill-chip">RLHF & Fine-Tuning</span>
-                            <span class="skill-chip">CUDA Kernels</span>
-                        </div>
-                    </div>
-                    <!-- Layer 3: Serving / MLOps -->
-                    <div class="skills-layer-row">
-                        <div class="layer-header">
-                            <div class="layer-title">// LAYER 03: OUT / SERVING</div>
-                            <div class="layer-activation">Activation: Softmax</div>
-                        </div>
-                        <div class="layer-chips">
-                            <span class="skill-chip">Model Quantization</span>
-                            <span class="skill-chip">NVIDIA Triton Inference</span>
-                            <span class="skill-chip">vLLM Hosting</span>
-                            <span class="skill-chip">API Development (FastAPI)</span>
-                            <span class="skill-chip">Drift & Bias Monitoring</span>
-                            <span class="skill-chip">CI/CD for ML</span>
-                        </div>
-                    </div>
-                    <!-- Layer 4: Infrastructure -->
-                    <div class="skills-layer-row">
-                        <div class="layer-header">
-                            <div class="layer-title">// LAYER 04: INFRASTRUCTURE</div>
-                            <div class="layer-activation">Activation: Linear</div>
-                        </div>
-                        <div class="layer-chips">
-                            <span class="skill-chip">Docker / Containerization</span>
-                            <span class="skill-chip">Kubernetes (K8s)</span>
-                            <span class="skill-chip">Cloud (AWS / GCP / Azure)</span>
-                            <span class="skill-chip">Slurm Orchestration</span>
-                            <span class="skill-chip">GPU Cluster Management</span>
-                            <span class="skill-chip">Terraform</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Contact Section -->
-        <section class="contact-section section-padding" id="contact">
-            <div class="section-container">
-                <div class="contact-card">
-                    <div class="contact-eyebrow">// initialization complete</div>
-                    <h2 class="contact-title">Establish Link</h2>
-                    <p class="contact-subtitle">
-                        Interested in collaboration, model optimization consultations, or discussing high-throughput infrastructure? Initialize contact below.
-                    </p>
-                    
-                    <div class="contact-links">
-                        <a href="mailto:engineer@latent.space" class="contact-pill btn-glow">
-                            <span class="pill-prefix">mail_to:</span> engineer@latent.space
-                        </a>
-                        <a href="https://github.com" target="_blank" rel="noopener" class="contact-pill btn-glow">
-                            <span class="pill-prefix">github:</span> latent-engineer
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-pill btn-glow">
-                            <span class="pill-prefix">linkedin:</span> ml-pioneer
-                        </a>
-                        <a href="#" class="contact-pill btn-glow" id="resume-btn">
-                            <span class="pill-prefix">exec:</span> get_resume.sh
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Footer -->
-        <footer class="main-footer">
-            <div class="footer-container">
-                <div class="footer-text">
-                    &copy; 2026 LATENT.SPACE // ALL WEIGHTS CONVERGED.
-                </div>
-                <div class="footer-meta">
-                    [PROJ_DIM: 3D] [COMPILER: VANILLA_ES6]
-                </div>
-            </div>
-        </footer>
-    </main>
-    <!-- Custom Script -->
-    <script type="module" src="main.js"></script>
-</body>
-</html>
+    /* Borders & Radius */
+    --border-color: rgba(139, 147, 167, 0.12);
+    --border-hover: rgba(94, 230, 208, 0.35);
+    --card-radius: 12px;
+    --pill-radius: 50px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* --- Base & Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+/* --- 3D Background Canvas --- */
+#canvas-3d {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    background-color: var(--bg-color);
+}
+/* --- Typography Utilities --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+.gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+.eyebrow {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+/* --- Interactive HUD Overlay --- */
+.hud-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 0 4%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 5;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.65;
+}
+.hud-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: rgba(17, 21, 31, 0.4);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+}
+.hud-item {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+}
+.hud-label {
+    color: var(--text-secondary);
+}
+.hud-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+.status-active {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 8px rgba(94, 230, 208, 0.4);
+}
+.text-glow {
+    color: var(--accent-violet);
+}
+/* --- Header / Navigation --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(11, 14, 20, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+.nav-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+.logo-accent {
+    color: var(--accent-cyan);
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-link {
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+.nav-link:hover {
+    color: var(--accent-cyan);
+}
+/* --- Button Styling --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--pill-radius);
+    transition: var(--transition-normal);
+    cursor: pointer;
+}
+.btn-primary {
+    background: var(--gradient-accent);
+    color: var(--bg-color);
+    font-weight: 700;
+    border: none;
+}
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(94, 230, 208, 0.4);
+    transform: translateY(-2px);
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+    border-color: var(--accent-cyan);
+    background: rgba(94, 230, 208, 0.03);
+    transform: translateY(-2px);
+}
+/* --- Page Layout & Content Wrapper --- */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+.section-padding {
+    padding: 8rem 2rem;
+}
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+.section-number {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+.section-title {
+    font-size: 2.25rem;
+    text-transform: capitalize;
+}
+/* --- Hero Section --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 10%;
+    position: relative;
+}
+.hero-content {
+    max-width: 750px;
+}
+.hero-title {
+    font-size: 3.8rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+}
+.hero-cta-group {
+    display: flex;
+    gap: 1.5rem;
+}
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.indicator-text {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+}
+.indicator-arrow {
+    width: 1px;
+    height: 40px;
+    background: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
+}
+.indicator-arrow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-cyan);
+    animation: scroll-glow 2s infinite ease-in-out;
+}
+@keyframes scroll-glow {
+    0% { transform: translateY(-100%); }
+    80% { transform: translateY(100%); }
+    100% { transform: translateY(100%); }
+}
+/* --- About Section --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4.5rem;
+    align-items: start;
+}
+.bio-lead {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+    font-family: var(--font-display);
+    line-height: 1.5;
+}
+.bio-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+.bio-block-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+}
+.bio-block p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+/* Stats Card Layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+.stat-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+.stat-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 25px var(--gradient-glow);
+    transform: translateY(-3px);
+}
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.stat-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(139, 147, 167, 0.45);
+    margin-top: 1rem;
+}
+/* --- Experience (Epoch Timeline) --- */
+.timeline-log {
+    position: relative;
+    padding-left: 2.5rem;
+}
+.timeline-log::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 2px;
+    height: 100%;
+    background: var(--border-color);
+}
+.timeline-epoch {
+    position: relative;
+    margin-bottom: 4rem;
+}
+.timeline-epoch:last-child {
+    margin-bottom: 0;
+}
+.epoch-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.epoch-marker::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan);
+}
+.epoch-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    transform: rotate(-90deg) translate(-28px, -18px);
+    transform-origin: left top;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+.epoch-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-left: 1.5rem;
+    white-space: nowrap;
+}
+.epoch-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 2.5rem;
+    margin-left: 1.5rem;
+    transition: var(--transition-normal);
+}
+.epoch-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 25px var(--gradient-glow);
+    transform: translateY(-3px);
+}
+.epoch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+.epoch-role {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+}
+.epoch-status {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+.status-loss-decrease {
+    background: rgba(94, 230, 208, 0.08);
+    border: 1px solid rgba(94, 230, 208, 0.25);
+    color: var(--accent-cyan);
+}
+.status-init {
+    background: rgba(139, 111, 240, 0.08);
+    border: 1px solid rgba(139, 111, 240, 0.25);
+    color: var(--accent-violet);
+}
+.epoch-company {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+.epoch-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+.epoch-tags, .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+.tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: rgba(139, 147, 167, 0.06);
+    border: 1px solid rgba(139, 147, 167, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+/* --- Projects Section --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.project-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-normal);
+}
+.project-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 25px var(--gradient-glow);
+    transform: translateY(-4px);
+}
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+}
+.project-id {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+.project-metric {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+    border-bottom: 1px solid var(--accent-cyan);
+    padding-bottom: 2px;
+}
+.project-name {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2.2rem;
+    line-height: 1.6;
+}
+/* --- Skills (Model Layers) --- */
+.skills-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.skills-layer-row {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: center;
+    transition: var(--transition-normal);
+}
+.skills-layer-row:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 25px var(--gradient-glow);
+}
+.layer-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.layer-title {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.layer-activation {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-violet);
+}
+.layer-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.skill-chip {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    border-radius: var(--pill-radius);
+    background: rgba(139, 147, 167, 0.05);
+    border: 1px solid rgba(139, 147, 167, 0.15);
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+.skill-chip:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    background: rgba(94, 230, 208, 0.05);
+}
+/* --- Contact Section --- */
+.contact-card {
+    background: radial-gradient(circle at top right, rgba(139, 111, 240, 0.06), transparent 60%), var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-accent);
+}
+.contact-eyebrow {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+.contact-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+.contact-subtitle {
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.05rem;
+}
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.contact-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--pill-radius);
+    background: rgba(13, 17, 26, 0.6);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: var(--transition-normal);
+}
+.pill-prefix {
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+}
+.contact-pill:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(94, 230, 208, 0.25);
+    transform: translateY(-3px);
+}
+/* --- Footer --- */
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+    margin-top: 4rem;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+/* --- Keyboard Accessibility outline & focus states --- */
+a:focus-visible, button:focus-visible, .contact-pill:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 4px;
+}
+/* --- Responsive Layout Adjustments --- */
+@media (max-width: 1024px) {
+    .hud-container {
+        display: none; /* Hide HUD overlays on smaller screens to avoid blocking content */
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 5rem 1.5rem;
+    }
+    
+    .main-header {
+        height: 60px;
+    }
+    
+    .nav-links {
+        display: none; /* Can expand to simple toggle, but keeping minimal for monospace card style */
+    }
+    
+    .hero-section {
+        padding: 0 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .timeline-log {
+        padding-left: 1rem;
+    }
+    
+    .timeline-log::before {
+        left: 0;
+    }
+    
+    .epoch-marker {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin-bottom: 1rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .epoch-marker::before {
+        left: -16px;
+        top: 4px;
+    }
+    
+    .epoch-label {
+        transform: none;
+        position: static;
+    }
+    
+    .epoch-date {
+        margin-left: 0;
+    }
+    
+    .epoch-card {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+    
+    .epoch-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        padding: 1.75rem;
+    }
+    
+    .skills-layer-row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+    
+    .contact-card {
+        padding: 3rem 1.5rem;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+    }
+    
+    .contact-pill {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+/* --- Respect Reduced Motion Preference --- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .indicator-arrow::after {
+        animation: none;
+    }
+}
